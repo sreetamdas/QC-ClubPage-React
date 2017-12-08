@@ -1,0 +1,40 @@
+@font-face {
+    font-family: Infinity;
+    src: url(fonts/Infinity.ttf);
+}
+
+@font-face {
+    font-family: Precursive;
+    src: url(fonts/Precursive.otf);
+}
+
+@font-face {
+    font-family: AmericanCaptain;
+    src: url(fonts/AmericanCaptain.ttf);
+}
+
+.precursive {
+    font-family: Precursive !important;
+}
+
+.americanCaptain {
+    font-family: AmericanCaptain !important;
+}
+
+section {
+    padding: 100px 0;
+}
+
+.dark-bg {
+    color: #fff;
+    background-color: #000;
+}
+
+.infinity {
+    font-family: Infinity;
+    /* font-weight: bold !important */
+}
+
+.orange {
+    color: #ff4425;
+}
