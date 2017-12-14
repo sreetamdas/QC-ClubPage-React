@@ -1,30 +1,28 @@
 import React from 'react';
-import Header from './Header';
+// import Header from './Header';
 import Members from './Members'
 import base from './base'
-import samples from './sample'
+// import samples from './sample'
 
 class Home extends React.Component {
 	constructor() {
 		super();
 
-        this.addGensec = this.addGensec.bind(this);
-        this.loadSamples = this.loadSamples.bind(this);
+        // this.addGensec = this.addGensec.bind(this);
+        // this.addMember = this.addMember.bind(this);
+		// this.loadSamples = this.loadSamples.bind(this);
+		this.sortMembers = this.sortMembers.bind(this);
 
 		this.state = {
-			gensec: {},
-			final_years: {},
-			third_years: {},
-			second_years: {},
-			n00bs: {},
+			clubMembers: {},
 		};
 	}
 
 	componentWillMount() {
-		// this runs right before the <App> is rendered
-		this.ref = base.syncState(`/primary-data`, {
+		// this runs right before the <Home /> is rendered
+		this.ref = base.syncState(`/new-data`, {
 			context: this,
-			state: 'gensec',
+			state: `clubMembers`, // add something here?
 		});
 	}
 
@@ -32,35 +30,53 @@ class Home extends React.Component {
 		base.removeBinding(this.ref);
 	}
 
-	addGensec(data) {
-		// update our state
-		const gensec = { ...this.state.gensec };
-		// add in our new fish
-		const timestamp = Date.now();
-		gensec[`gensec-${timestamp}`] = data;
-		// set state
-		this.setState({ gensec });
-	}
+	// addGensec(data) {
+	// 	// update our state
+	// 	const gensec = { ...this.state.gensec };
+	// 	// add in our new fish
+	// 	const timestamp = Date.now();
+	// 	gensec[`gensec-${timestamp}`] = data;
+	// 	// set state
+	// 	this.setState({ gensec });
+	// }
 
-    loadSamples() {
-        this.setState({
-            gensec: samples
-        });
+    // loadSamples() {
+    //     this.setState({
+    //         gensec: samples
+    //     });
+	// }
+
+	sortMembers() {
+		const gensec = {};
+		const n00b = {
+			yello: `wofl`
+		}
+// , finalYears, thirdYears, secondYears, n00bs
+		
+
+		gensec[`hllelo`] = 'world'
+		console.log(gensec);
+
+		gensec[`n00bList`] = n00b
+		console.log(gensec);
 	}
 	
 
 	render() {
-		console.log(this.gensec);
+		console.log(this.clubMembers);
+
+		this.sortMembers();
 
 		return (
 			<div className="dark-bg">
 				{/* <Header /> */}
-				{Object.keys(this.state.gensec).map(key => (
+				{/* {Object.keys(this.state.clubMembers).map(key => (
 					<Members 
 						key={key}
-						details={this.state.gensec[key]}	
+						details={this.state.clubMembers[key]}	
 					/>
-				))}
+				))} */}
+				<h1>Rendered</h1>
 			</div>
 		);
 	}

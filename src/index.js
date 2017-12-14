@@ -1,18 +1,24 @@
 // let's go!
 import React from 'react';
 import { render } from 'react-dom';
-// import { BrowserRouter, Match, Miss } from 'react-router';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+import AddMembers from './components/AddMembers'
+import NotFound from './components/NotFound'
 
 
 
 const Root = () => {
 	return (
-		<div>
-			<Home />
-		</div>
+		<BrowserRouter>
+			<Switch>
+				<Route exact path="/" component={Home} />
+				<Route exact path="/add" component={AddMembers} />
+				<Route component={NotFound} />
+			</Switch>
+		</BrowserRouter>
 	)
 }
 
