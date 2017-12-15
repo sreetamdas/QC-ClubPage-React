@@ -9,7 +9,7 @@ class AddMembers extends React.Component {
 
 		this.addMember = this.addMember.bind(this);
 		this.publishClub = this.publishClub.bind(this);
-		this.get_from_google_spreadsheet = this.get_from_google_spreadsheet.bind(this);
+		this.authHandler = this.authHandler.bind(this);
 
 		this.state = {
 			club: {
@@ -26,9 +26,12 @@ class AddMembers extends React.Component {
 				secondYears: [],
 				thirdYears: [],
 			},
+			user_after_auth: null,
+			owner: "quizclub@student.nitw.ac.in"
 		};
 
 		this.members = {};
+		this.owner_is_signed_in = false;
 	}
 
 	componentDidMount() {
@@ -84,12 +87,12 @@ class AddMembers extends React.Component {
 
 	get_from_google_spreadsheet() {
 
-		const api_key = 'AIzaSyB5FLnTEzfV-YrVPf7eUNFkQu9h9VJmGK4',
-			sheet_id = '1YXziLAuUY4-PBBsTyXqHnl_ja3zB4OQbAybByvAxj_4',
-			range = 'A1:D6',
+		const api_key = "AIzaSyB5FLnTEzfV-YrVPf7eUNFkQu9h9VJmGK4",
+			sheet_id = "1YXziLAuUY4-PBBsTyXqHnl_ja3zB4OQbAybByvAxj_4",
+			range = "A1:D6",
 			url = `https://sheets.googleapis.com/v4/spreadsheets/${sheet_id}/values/Sheet1!${range}`;
 
-		const final = `${url}?key=${api_key}`
+		const final = `${url}?key=${api_key}`;
 		console.log(`request at ${final}`);
 
 		axios.get(url, {
@@ -106,7 +109,35 @@ class AddMembers extends React.Component {
 
 	}
 
+	authenticate() {
+	    base.authWithOAuthPopup("google", this.authHandler);
+	}
+
+	authHandler(error, authData) {
+		console.log(authData.user);
+		this.setState({
+			user_after_auth: authData.user.email
+		})
+
+		if(this.state.user_after_auth === this.state.owner) {
+			this.owner_is_signed_in = true;
+		}
+	}
+
+	render_login() {
+		return(
+			<div>
+				<p>Sign in to auth dumbass</p>
+				<button onClick={() => this.authenticate()}>Using Google</button>
+			</div>
+		)
+	}
+
 	render() {
+		if (this.state.user_after_auth !== this.state.owner) {
+			return <div>{this.render_login()}</div>;
+		}
+
 		return (
 			<div>
 				<form
@@ -131,10 +162,10 @@ class AddMembers extends React.Component {
 						<option value="gensec">Gensec</option>
 					</select>
 					<button type="submit">Submit this!</button>
-					<button type="submit" onClick={this.publishClub.bind(this)}>
+					<button type="submit" onClick={() => this.publishClub()}>
 						Publish this!
 					</button>
-					<button type="submit" onClick={this.get_from_google_spreadsheet.bind(this)}>
+					<button type="submit" onClick={() => this.get_from_google_spreadsheet()}>
 						Get from Sheet
 					</button>
 				</form>
