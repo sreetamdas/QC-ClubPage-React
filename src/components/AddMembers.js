@@ -31,7 +31,6 @@ class AddMembers extends React.Component {
 		};
 
 		this.members = {};
-		this.owner_is_signed_in = false;
 	}
 
 	componentDidMount() {
@@ -106,7 +105,7 @@ class AddMembers extends React.Component {
 		.catch((error) => {
 			alert(error)
 		})
-
+// transform the received incomplete and/or broken JSON into object and push into firebase
 	}
 
 	authenticate() {
@@ -134,9 +133,9 @@ class AddMembers extends React.Component {
 	}
 
 	render() {
-		if (this.state.user_after_auth !== this.state.owner) {
-			return <div>{this.render_login()}</div>;
-		}
+		// if (this.state.user_after_auth !== this.state.owner) {
+		// 	return <div>{this.render_login()}</div>;
+		// }
 
 		return (
 			<div>
