@@ -133,9 +133,9 @@ class AddMembers extends React.Component {
 	}
 
 	render() {
-		// if (this.state.user_after_auth !== this.state.owner) {
-		// 	return <div>{this.render_login()}</div>;
-		// }
+		if (this.state.user_after_auth !== this.state.owner) {
+			return <div>{this.render_login()}</div>;
+		}
 
 		return (
 			<div>
