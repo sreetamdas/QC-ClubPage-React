@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './css/bootstrap.min.css';
 import './css/styles.css';
 import AddMembers from './components/AddMembers'
 import NotFound from './components/NotFound'

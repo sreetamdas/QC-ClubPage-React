@@ -16,14 +16,14 @@ class Members extends React.Component {
 		const {details} = this.props;
 		console.log(details);
 
-		const notEmpty = details.length ? true : false
+		const empty = details.length===0 ? true : false
 
-		console.log(notEmpty);
+		console.log(empty);
 		// console.log(JSON.stringify(this.props.details));
 
 		return(
 			<div>
-				{notEmpty ? (
+				{!empty ? (
 				<div className="container-fluid">
 					<div className="row">
 						<div className="col-lg-12 text-center">

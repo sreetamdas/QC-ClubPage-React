@@ -1,12 +1,14 @@
 import React from 'react';
-// import Members from './Members'
+import Members from './Members'
 import base from './base'
+
+// API Key for Google Spreadsheets: AIzaSyB5FLnTEzfV-YrVPf7eUNFkQu9h9VJmGK4
 
 class Home extends React.Component {
 	constructor() {
 		super();
 
-		this.sortMembers = this.sortMembers.bind(this);
+		// this.sortMembers = this.sortMembers.bind(this);
 
 		this.state = {
 			clubMembers: {},
@@ -15,7 +17,7 @@ class Home extends React.Component {
 
 	componentWillMount() {
 		// this runs right before the <Home /> is rendered
-		this.ref = base.syncState(`/new-data`, {
+		this.ref = base.syncState(`/primary-data`, {
 			context: this,
 			state: `clubMembers`, // add something here?
 		});
@@ -28,17 +30,17 @@ class Home extends React.Component {
 	render() {
 		console.log(this.clubMembers);
 
-		this.sortMembers();
+		// this.sortMembers();
 
 		return (
 			<div className="dark-bg">
 				{/* <Header /> */}
-				{/* {Object.keys(this.state.clubMembers).map(key => (
+				{Object.keys(this.state.clubMembers).map(key => (
 					<Members 
 						key={key}
 						details={this.state.clubMembers[key]}	
 					/>
-				))} */}
+				))}
 				<h1>Rendered</h1>
 			</div>
 		);
