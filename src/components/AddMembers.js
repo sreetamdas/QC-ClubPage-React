@@ -1,6 +1,7 @@
 import React from 'react';
 import base from './base';
 import Members from './Members'
+import axios from 'axios';
 
 class AddMembers extends React.Component {
 	constructor() {
@@ -8,6 +9,7 @@ class AddMembers extends React.Component {
 
 		this.addMember = this.addMember.bind(this);
 		this.publishClub = this.publishClub.bind(this);
+		this.get_from_google_spreadsheet = this.get_from_google_spreadsheet.bind(this);
 
 		this.state = {
 			club: {
@@ -80,6 +82,30 @@ class AddMembers extends React.Component {
 		this.addMember(member);
 	}
 
+	get_from_google_spreadsheet() {
+
+		const api_key = 'AIzaSyB5FLnTEzfV-YrVPf7eUNFkQu9h9VJmGK4',
+			sheet_id = '1YXziLAuUY4-PBBsTyXqHnl_ja3zB4OQbAybByvAxj_4',
+			range = 'A1:D6',
+			url = `https://sheets.googleapis.com/v4/spreadsheets/${sheet_id}/values/Sheet1!${range}`;
+
+		const final = `${url}?key=${api_key}`
+		console.log(`request at ${final}`);
+
+		axios.get(url, {
+			params: {
+				key: api_key
+			}
+		})
+		.then((response) => {
+			console.log(response);
+		})
+		.catch((error) => {
+			alert(error)
+		})
+
+	}
+
 	render() {
 		return (
 			<div>
@@ -107,6 +133,9 @@ class AddMembers extends React.Component {
 					<button type="submit">Submit this!</button>
 					<button type="submit" onClick={this.publishClub.bind(this)}>
 						Publish this!
+					</button>
+					<button type="submit" onClick={this.get_from_google_spreadsheet.bind(this)}>
+						Get from Sheet
 					</button>
 				</form>
 				{Object.keys(this.state.temp).map(key => (
