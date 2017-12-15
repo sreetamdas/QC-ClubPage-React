@@ -7,35 +7,46 @@ class AddMembers extends React.Component {
 		super();
 
 		this.addMember = this.addMember.bind(this);
+		this.publishClub = this.publishClub.bind(this);
 
 		this.state = {
-			club: [],
-			gensec: [],
-			finalYears: [],
-			n00bs: [],
-			secondYears: [],
-			thirdYears: []
+			club: {
+				gensec: [],
+				finalYears: [],
+				n00bs: [],
+				secondYears: [],
+				thirdYears: [],
+			},
+			temp: {
+				gensec: [],
+				finalYears: [],
+				n00bs: [],
+				secondYears: [],
+				thirdYears: [],
+			}
 		};
+		
+		this.members = {};
 
-		this.yearOf = `n00b`;
 
-		// const gensec = [0], finalYears = [0], thirdYears = [0], secondYears = [0], n00bs = [0];
-		// const gensec = [];
-		// const finalYears = [];
-		// const n00bs = [];
-		// const secondYears = [];
-		// const thirdYears = [];
-
-		this.state.club.push(this.state.thirdYears);
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		// this runs right before the <AddMembers /> is rendered
-
 		this.ref = base.syncState(`/1-data`, {
 			context: this,
 			state: `club`, // add something here?
 		});
+
+// check if there is any information in the club state after synving from
+
+		const localStorageRef = localStorage.getItem(`club_temp`);
+
+		// if (localStorageRef) {
+		// 	// update our App component's order state
+		// 	this.setState({ club: JSON.parse(localStorageRef) });
+		// }
+
 	}
 
 	componentWillUnmount() {
@@ -44,56 +55,31 @@ class AddMembers extends React.Component {
 
 	addMember(member) {
 
-		console.log(member);
+		let temp = this.state.temp;
+		temp[`${member.year}`].push(member);
+		this.setState({
+			temp: temp,
+		});
 
-		switch (member.year) {
-			case `gensec`:
-				this.gensec = [...this.gensec].push(member)
-				break;
-			case `finalYear`:
-				this.finalYears = [...this.finalYears].push(member)
-				break;
-			case `thirdYear`:
-				this.setState({
-					thirdYears: [...this.state.thirdYears, member]
-				})
-				console.log(this.state.thirdYears);
-				break;
-			case `secondYear`:
-				this.secondYears = [...this.secondYears].push(member)
-				break;
-			case `n00b`:
-				this.n00bs = [...this.n00bs].push(member)
-				break;
-			
-			default:
-				throw alert("something is reeeeeeally wrong")
-				// break;
-				
-		}
+	}
 
-		let yearWise = {...this.state.club}
-		yearWise[`${member.year}`].push(this.state.thirdYears);
+	componentWillUpdate(nextProps, nextState) {
+		localStorage.setItem(
+			`club_temp`,
+			JSON.stringify(nextState.temp)
+		);
+  	}
 
-		this.setState({ club: yearWise})
+	publishClub() {
 
-		// this.setState({
-		// 	club: [...this.state.club, member]
-		// });
+		this.setState({
+			club: this.state.temp
+		})
 
-		// console.log(this.state.club);
-		console.log(this.n00bs);
-		console.log(this.secondYears);
-		console.log(this.thirdYears);
-		console.log(this.finalYears);
-		console.log(this.gensec);
-
-		
 	}
 
 	createMember(event) {
 		event.preventDefault();
-		// this.componentWillMount();
 
 		const member = {
 			name: this.name.value,
@@ -102,9 +88,6 @@ class AddMembers extends React.Component {
 		};
 
 		this.addMember(member);
-
-		// console.log(member);
-		// console.log(this.state.year);
 	}
 
 	render() {
@@ -124,13 +107,14 @@ class AddMembers extends React.Component {
 					placeholder="Quote"
 				/>
 				<select ref={input => (this.year = input)}>
-					<option value="n00b">n00b</option>
-					<option value="secondYear">secondYear</option>
-					<option value="thirdYear">thirdYear</option>
-					<option value="finalYear">finalYear</option>
+					<option value="n00bs">n00b</option>
+					<option value="secondYears">secondYear</option>
+					<option value="thirdYears">thirdYear</option>
+					<option value="finalYears">finalYear</option>
 					<option value="gensec">Gensec</option>
 				</select>
 				<button type="submit">Submit this!</button>
+				<button type="submit" onClick={this.publishClub.bind(this)}>Publish this!</button>
 			</form>
 		);
 	}
