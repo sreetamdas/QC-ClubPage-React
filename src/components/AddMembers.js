@@ -43,14 +43,14 @@ class AddMembers extends React.Component {
 
 	componentWillMount() {
 		// this runs right before the <AddMembers /> is rendered
-		// this.ref = base.syncState(`/1-data`, {
-		// 	context: this,
-		// 	state: `club`,
-		// 	then() {
-		// 		console.log("this is the then callback");
-		// 		this.update_temp_from_firebase();
-		// 	}
-		// });
+		this.ref = base.syncState(`/1-data`, {
+			context: this,
+			state: `club`,
+			then() {
+				console.log("this is the then callback");
+				this.update_temp_from_firebase();
+			}
+		});
 	}
 	componentWillUnmount() {
 		base.removeBinding(this.ref);
