@@ -29,7 +29,7 @@ class Home extends React.Component {
 
 	render() {
 		return (
-			<div className="dark-bg">
+			<div className="white-bg">
 				{/* <Header /> */}
 				{Object.keys(this.state.clubMembers).map(
 					key =>
