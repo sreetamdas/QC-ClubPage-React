@@ -35,7 +35,7 @@ class AddMembers extends React.Component {
 			user_after_auth: null,
 			owner: "quizclub@student.nitw.ac.in",
 			clicked_get_from_sheet: false,
-			sheet_load: "Get from Google SpreadSheet"
+			sheet_load: "Get from Google SpreadSheet",
 		};
 
 		this.members = {};
@@ -49,7 +49,7 @@ class AddMembers extends React.Component {
 			then() {
 				console.log("this is the then callback");
 				this.update_temp_from_firebase();
-			}
+			},
 		});
 	}
 	componentWillUnmount() {
@@ -102,7 +102,7 @@ class AddMembers extends React.Component {
 	get_from_google_spreadsheet() {
 		this.setState({
 			clicked_get_from_sheet: true,
-			sheet_load: "Receiving from Sheet"
+			sheet_load: "Receiving from Sheet",
 		});
 
 		const api_key = "AIzaSyB5FLnTEzfV-YrVPf7eUNFkQu9h9VJmGK4",
@@ -122,8 +122,8 @@ class AddMembers extends React.Component {
 			.then(response => {
 				// call function here
 				this.setState({
-					sheet_load: "Loaded!"
-				})
+					sheet_load: "Loaded!",
+				});
 
 				this.process_google_spreadsheet(response);
 			})
@@ -253,10 +253,11 @@ class AddMembers extends React.Component {
 					Publish this!
 				</button>
 				<button
-					className={`btn ${this.state.sheet_load === "Loaded!"
-																	? "btn-success"
-																	: "btn-outline-primary"}`
-																}
+					className={`btn ${
+						this.state.sheet_load === "Loaded!"
+							? "btn-success"
+							: "btn-outline-primary"
+					}`}
 					onClick={() => this.get_from_google_spreadsheet()}
 					disabled={this.state.clicked_get_from_sheet}
 				>
