@@ -11,7 +11,6 @@ class Members extends React.Component {
 			paddingTop: 0,
 			color: "black",
 		};	
-		console.log(nameStyle);
 		let image_url_string = new URL(typeof member.image === "undefined"
 										? "https://drive.google.com/open?id=1QwSSN4kXEERbydtgpomfuqw9-RSw4PfH" // Kasala is default image obviously
 										: member.image),
