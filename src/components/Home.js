@@ -17,7 +17,7 @@ class Home extends React.Component {
 
 	componentWillMount() {
 		// this runs right before the <Home /> is rendered
-		this.ref = base.syncState(`/primary-data`, {
+		this.ref = base.syncState(`/1-data`, {
 			context: this,
 			state: `clubMembers`, // add something here?
 		});
@@ -28,19 +28,15 @@ class Home extends React.Component {
 	}
 
 	render() {
-		console.log(this.clubMembers);
-
-		// this.sortMembers();
-
 		return (
 			<div className="dark-bg">
 				{/* <Header /> */}
-				{Object.keys(this.state.clubMembers).map(key => (
-					<Members 
-						key={key}
-						details={this.state.clubMembers[key]}	
-					/>
-				))}
+				{Object.keys(this.state.clubMembers).map(
+					key =>
+						this.state.clubMembers[key].length !== 0 ? (
+							<Members key={key} list={this.state.clubMembers[key]} /> // Passes an entire batch at a time
+						) : console.log("")
+				)}
 				<h1>Rendered</h1>
 			</div>
 		);
