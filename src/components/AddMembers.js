@@ -217,9 +217,9 @@ class AddMembers extends React.Component {
 	}
 
 	render() {
-		if (this.state.user_after_auth !== this.state.owner) {
-			return <div>{this.render_login()}</div>;
-		}
+		// if (this.state.user_after_auth !== this.state.owner) {
+		// 	return <div>{this.render_login()}</div>;
+		// }
 
 		return (
 			<div>
@@ -263,14 +263,19 @@ class AddMembers extends React.Component {
 				>
 					{this.state.sheet_load}
 				</button>
-				{Object.keys(this.state.temp).map(
-					key =>
-						this.state.temp[key].length !== 0 ? (
-							<Members key={key} list={this.state.temp[key]} /> // Passes an entire batch at a time
-						) : (
-							console.log("")
-						),
-				)}
+				<div className="black-bg">
+					{Object.keys(this.state.temp).map(
+						key =>
+							this.state.temp[key].length !== 0 ? (
+								<Members
+									key={key}
+									list={this.state.temp[key]}
+								/> // Passes an entire batch at a time
+							) : (
+								console.log("")
+							),
+					)}
+				</div>
 			</div>
 		);
 	}
