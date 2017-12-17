@@ -10,6 +10,7 @@ class Home extends React.Component {
 
 		this.state = {
 			clubMembers: {},
+			loaded: false,
 		};
 	}
 
@@ -18,6 +19,11 @@ class Home extends React.Component {
 		this.ref = base.syncState(`/1-data`, {
 			context: this,
 			state: `clubMembers`, // add something here?
+			then() {
+				this.setState({
+					loaded: true
+				})
+			}
 		});
 	}
 
@@ -27,12 +33,12 @@ class Home extends React.Component {
 
 	sortMembers() {
 		const order = [
-			"gensec",
-			"finalYears",
-			"thirdYears",
-			"secondYears",
-			"firstYears",
-		],
+				"gensec",
+				"finalYears",
+				"thirdYears",
+				"secondYears",
+				"firstYears",
+			],
 			sorted_club = {};
 
 		for (let i = 0; i < order.length; i++) {
@@ -49,19 +55,21 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div className="black-bg">
-				{/* <Header /> */}
-				{Object.keys(this.sortMembers()).map(
-					key =>
-						this.state.clubMembers[key].length !== 0 ? (
-							<Members
-								key={key}
-								list={this.state.clubMembers[key]}
-							/> // Passes an entire batch at a time
-						) : (
-							console.log("")
-						),
+				{this.state.loaded ? (
+					Object.keys(this.sortMembers()).map(
+						key =>
+							this.state.clubMembers[key].length !== 0 ? (
+								<Members
+									key={key}
+									list={this.state.clubMembers[key]}
+								/> // Passes an entire batch at a time
+							) : (
+								console.log("")
+							),
+					)
+				) : (
+					<h1 className="white-text">Rendering</h1>
 				)}
-				<h1>Rendered</h1>
 			</div>
 		);
 	}
