@@ -8,7 +8,7 @@ class Home extends React.Component {
 	constructor() {
 		super();
 
-		// this.sortMembers = this.sortMembers.bind(this);
+		this.sortMembers = this.sortMembers.bind(this);
 
 		this.state = {
 			clubMembers: {},
@@ -27,15 +27,30 @@ class Home extends React.Component {
 		base.removeBinding(this.ref);
 	}
 
+	sortMembers() {
+		order = [
+			"gensec",
+			"finalYears",
+			"thirdYears",
+			"secondYears",
+			"firstYears",
+		];
+	}
+
 	render() {
 		return (
-			<div className="white-bg">
+			<div className="black-bg">
 				{/* <Header /> */}
 				{Object.keys(this.state.clubMembers).map(
 					key =>
 						this.state.clubMembers[key].length !== 0 ? (
-							<Members key={key} list={this.state.clubMembers[key]} /> // Passes an entire batch at a time
-						) : console.log("")
+							<Members
+								key={key}
+								list={this.state.clubMembers[key]}
+							/> // Passes an entire batch at a time
+						) : (
+							console.log("")
+						),
 				)}
 				<h1>Rendered</h1>
 			</div>
