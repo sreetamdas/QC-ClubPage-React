@@ -1,6 +1,7 @@
 import React from "react";
 import Members from "./Members";
 import base from "./base";
+import Loader from "./Loader";
 
 class Home extends React.Component {
 	constructor() {
@@ -21,9 +22,9 @@ class Home extends React.Component {
 			state: `clubMembers`, // add something here?
 			then() {
 				this.setState({
-					loaded: true
-				})
-			}
+					loaded: true,
+				});
+			},
 		});
 	}
 
@@ -68,7 +69,7 @@ class Home extends React.Component {
 							),
 					)
 				) : (
-					<h1 className="white-text">Rendering</h1>
+					<Loader message="Loading"/>
 				)}
 			</div>
 		);
