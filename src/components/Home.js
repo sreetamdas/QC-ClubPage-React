@@ -28,20 +28,31 @@ class Home extends React.Component {
 	}
 
 	sortMembers() {
-		order = [
+		const order = [
 			"gensec",
 			"finalYears",
 			"thirdYears",
 			"secondYears",
 			"firstYears",
-		];
+		],
+			sorted_club = {};
+
+		for (let i = 0; i < order.length; i++) {
+			const element = order[i];
+			Object.keys(this.state.clubMembers).forEach(key => {
+				if (key === element) {
+					sorted_club[key] = this.state.clubMembers[key];
+				}
+			});
+		}
+		return sorted_club;
 	}
 
 	render() {
 		return (
 			<div className="black-bg">
 				{/* <Header /> */}
-				{Object.keys(this.state.clubMembers).map(
+				{Object.keys(this.sortMembers()).map(
 					key =>
 						this.state.clubMembers[key].length !== 0 ? (
 							<Members
