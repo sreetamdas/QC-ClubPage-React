@@ -5,19 +5,19 @@ class Members extends React.Component {
 		const nameStyle = {
 			fontSize: "3em",
 		},
-			nameClasses = "americanCaptain noUnderline orange",
+			nameClasses = "josefinSlab noUnderline white-text",
 			quoteStyle = {
 			fontSize: "1.7em",
 			paddingTop: 0,
 		},
-			quoteClasses = "precursive white-text";	
+			quoteClasses = "josefinSlab orange";	
 		let image_url_string = new URL(typeof member.image === "undefined"
 										? "https://drive.google.com/open?id=1QwSSN4kXEERbydtgpomfuqw9-RSw4PfH" // Kasala is default image obviously
 										: member.image),
 			image_id = image_url_string.searchParams.get("id");
 
 		return (
-			<div className="col-lg-4 text-center" key={key}>
+			<div className="col text-center" key={key}>
 				<img
 					src={`https://drive.google.com/uc?export=view&id=${image_id}`}
 					height="200px"
