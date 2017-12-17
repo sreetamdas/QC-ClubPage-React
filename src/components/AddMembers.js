@@ -70,7 +70,7 @@ class AddMembers extends React.Component {
 		});
 		this.setState({
 			temp: temp_temp,
-			loaded: true
+			loaded: true,
 		});
 	}
 	addMember(member) {
@@ -206,19 +206,34 @@ class AddMembers extends React.Component {
 	}
 
 	render_login() {
+		const styles_login = {
+			fontSize: "15vh",
+		};
 		return (
-			<div>
-				<p>Sign in to auth dumbass</p>
-				<button onClick={() => this.authenticate()}>
-					Using Google
-				</button>
+			<div className="full-page">
+				<h1
+					className="white-text vertical-center josefinSlab"
+					style={styles_login}
+				>
+					Login Dumbass
+					<br />
+					<a
+						className="btn btn-lg btn-outline-primary"
+						onClick={() => this.authenticate()}
+						style={{ cursor: "pointer" }}
+					>
+						<span style={{ color: "#fff", fontSize: "5vh" }}>
+							Sign in using Google
+						</span>
+					</a>
+				</h1>
 			</div>
 		);
 	}
 
 	render() {
 		// enable auth below
-		if (this.state.user_after_auth !== this.state.owner) { 
+		if (this.state.user_after_auth !== this.state.owner) {
 			return <div>{this.render_login()}</div>;
 		}
 
