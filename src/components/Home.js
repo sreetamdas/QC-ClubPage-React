@@ -2,8 +2,6 @@ import React from "react";
 import Members from "./Members";
 import base from "./base";
 
-// API Key for Google Spreadsheets: AIzaSyB5FLnTEzfV-YrVPf7eUNFkQu9h9VJmGK4
-
 class Home extends React.Component {
 	constructor() {
 		super();
