@@ -4,13 +4,13 @@ class Members extends React.Component {
 	render_member(member, key) {
 		const nameStyle = {
 			fontSize: "3em",
-			color: "black",
 		},
+			nameClasses = "americanCaptain noUnderline orange",
 			quoteStyle = {
 			fontSize: "1.7em",
 			paddingTop: 0,
-			color: "black",
-		};	
+		},
+			quoteClasses = "precursive white-text";	
 		let image_url_string = new URL(typeof member.image === "undefined"
 										? "https://drive.google.com/open?id=1QwSSN4kXEERbydtgpomfuqw9-RSw4PfH" // Kasala is default image obviously
 										: member.image),
@@ -24,10 +24,10 @@ class Members extends React.Component {
 					className="rounded-circle"
 					alt={member.name}
 				/>
-				<p className="americanCaptain noUnderline">
-					<a style={nameStyle}>{member.name}</a>
+				<p>
+					<a style={nameStyle} className={nameClasses}>{member.name}</a>
 					<br />
-					<span className="precursive" style={quoteStyle}>
+					<span className={quoteClasses} style={quoteStyle}>
 						{member.quote}
 					</span>
 				</p>
