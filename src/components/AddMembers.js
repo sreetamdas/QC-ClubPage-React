@@ -75,8 +75,6 @@ class AddMembers extends React.Component {
 	}
 	addMember(member) {
 		let temp = { ...this.state.temp };
-		console.log("AddMember called", member);
-		console.log(member.length);
 		Array.isArray(member)
 			? Object.keys(member).map(key =>
 					temp[`${member[key].year}`].push(member[key]),
@@ -148,7 +146,6 @@ class AddMembers extends React.Component {
 		let new_members = [];
 
 		Object.keys(sheet_data).forEach(key => {
-			// console.log(sheet_data);
 			let new_member = {}; // if higher scope then changes all attached values ???
 
 			Object.keys(sheet_data[key]).forEach(i => {
@@ -190,7 +187,6 @@ class AddMembers extends React.Component {
 						break;
 				}
 			});
-			// console.log(new_member);
 			new_members.push(new_member);
 		});
 		this.addMember(new_members);
@@ -200,7 +196,6 @@ class AddMembers extends React.Component {
 		base.authWithOAuthPopup("google", this.authHandler);
 	}
 	authHandler(error, authData) {
-		console.log(authData.user);
 		this.setState({
 			user_after_auth: authData.user.email,
 		});
