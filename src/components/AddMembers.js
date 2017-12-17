@@ -2,6 +2,7 @@ import React from "react";
 import base from "./base";
 import Members from "./Members";
 import axios from "axios";
+import Loader from "./Loader";
 
 class AddMembers extends React.Component {
 	constructor() {
@@ -36,6 +37,7 @@ class AddMembers extends React.Component {
 			owner: "quizclub@student.nitw.ac.in",
 			clicked_get_from_sheet: false,
 			sheet_load: "Get from Google SpreadSheet",
+			loaded: false,
 		};
 
 		this.members = {};
@@ -68,6 +70,7 @@ class AddMembers extends React.Component {
 		});
 		this.setState({
 			temp: temp_temp,
+			loaded: true
 		});
 	}
 	addMember(member) {
@@ -103,6 +106,7 @@ class AddMembers extends React.Component {
 		this.setState({
 			clicked_get_from_sheet: true,
 			sheet_load: "Receiving from Sheet",
+			loaded: false,
 		});
 
 		const api_key = "AIzaSyB5FLnTEzfV-YrVPf7eUNFkQu9h9VJmGK4",
@@ -123,6 +127,7 @@ class AddMembers extends React.Component {
 				// call function here
 				this.setState({
 					sheet_load: "Loaded!",
+					loaded: true,
 				});
 
 				this.process_google_spreadsheet(response);
@@ -264,16 +269,20 @@ class AddMembers extends React.Component {
 					{this.state.sheet_load}
 				</button>
 				<div className="black-bg">
-					{Object.keys(this.state.temp).map(
-						key =>
-							this.state.temp[key].length !== 0 ? (
-								<Members
-									key={key}
-									list={this.state.temp[key]}
-								/> // Passes an entire batch at a time
-							) : (
-								console.log("")
-							),
+					{this.state.loaded ? (
+						Object.keys(this.state.temp).map(
+							key =>
+								this.state.temp[key].length !== 0 ? (
+									<Members
+										key={key}
+										list={this.state.temp[key]}
+									/> // Passes an entire batch at a time
+								) : (
+									console.log("")
+								),
+						)
+					) : (
+						<Loader message="Loading" />
 					)}
 				</div>
 			</div>
