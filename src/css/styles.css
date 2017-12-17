@@ -18,6 +18,16 @@
 	src: url(fonts/Ailerons.otf);
 }
 
+@import url("https://fonts.googleapis.com/css?family=Josefin+Slab|Special+Elite");
+
+.josefinSlab {
+	font-family: "Josefin Slab", serif;
+}
+
+.specialElite {
+	font-family: "Special Elite", cursive;
+}
+
 .precursive {
 	font-family: Precursive;
 }
@@ -96,10 +106,6 @@ p {
 	background-color: #000;
 }
 
-section {
-	padding: 100px 0;
-}
-
 .no-padding {
 	padding: 0;
 }
@@ -112,16 +118,13 @@ section {
 	-moz-transition: all 0.35s;
 	transition: all 0.35s;
 }
-.dark-bg {
-	background-color: #222;
-}
 
 .black-bg {
-    background-color: #000;
-} 
+	background-color: #000;
+}
 
 .white-text {
-	color: azure;
+	color: white !important;
 }
 
 .text-muted {
@@ -160,4 +163,19 @@ section {
 
 #copyright {
 	text-align: right;
+}
+
+.full-page {
+	/* position: relative; */
+	display: table;
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	text-align: center;
+	background-color: #000;
+}
+
+.vertical-center {
+	display: table-cell;
+	vertical-align: middle;
 }
