@@ -38,6 +38,7 @@ class AddMembers extends React.Component {
 			clicked_get_from_sheet: false,
 			sheet_load: "Get from Google SpreadSheet",
 			loaded: false,
+			tried_auth: false,
 		};
 
 		this.members = {};
@@ -196,13 +197,15 @@ class AddMembers extends React.Component {
 		base.authWithOAuthPopup("google", this.authHandler);
 	}
 	authHandler(error, authData) {
+		if (authData.user.email !== this.state.owner) {
+			this.setState({
+				tried_auth: true
+			})
+			return null;
+		}
 		this.setState({
 			user_after_auth: authData.user.email,
 		});
-
-		if (this.state.user_after_auth === this.state.owner) {
-			this.owner_is_signed_in = true;
-		}
 	}
 
 	render_login() {
@@ -215,7 +218,10 @@ class AddMembers extends React.Component {
 					className="white-text vertical-center josefinSlab"
 					style={styles_login}
 				>
-					Login Dumbass
+					{this.state.tried_auth
+						? "You are not Authorized"
+						: "Login Dumbass"
+					}
 					<br />
 					<a
 						className="btn btn-lg btn-outline-primary"
@@ -223,7 +229,7 @@ class AddMembers extends React.Component {
 						style={{ cursor: "pointer" }}
 					>
 						<span style={{ color: "#fff", fontSize: "5vh" }}>
-							Sign in using Google
+							Authenticate using Google
 						</span>
 					</a>
 				</h1>
