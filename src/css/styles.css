@@ -13,12 +13,17 @@
 	src: url(fonts/AmericanCaptain.ttf);
 }
 
+@font-face {
+	font-family: Ailerons;
+	src: url(fonts/Ailerons.otf);
+}
+
 .precursive {
-	font-family: Precursive !important;
+	font-family: Precursive;
 }
 
 .americanCaptain {
-	font-family: AmericanCaptain !important;
+	font-family: AmericanCaptain;
 }
 
 section {
@@ -37,9 +42,122 @@ section {
 
 .infinity {
 	font-family: Infinity;
-	/* font-weight: bold !important */
+	/* font-weight: bold */
 }
 
 .orange {
 	color: #ff4425;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+hr {
+	max-width: 50px;
+	border-color: #f05f40;
+	border-width: 3px;
+}
+
+hr.light {
+	border-color: #fff;
+}
+
+a {
+	color: #ff4425;
+	-webkit-transition: all 0.35s;
+	-moz-transition: all 0.35s;
+	transition: all 0.35s;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover,
+a:focus {
+	color: coral;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+p {
+	margin-bottom: 20px;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.bg-dark {
+	color: #fff;
+	background-color: #000;
+}
+
+section {
+	padding: 100px 0;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.navbar-default {
+	border-color: rgba(34, 34, 34, 0.05);
+	font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+	background-color: #000;
+	-webkit-transition: all 0.35s;
+	-moz-transition: all 0.35s;
+	transition: all 0.35s;
+}
+.dark-bg {
+	background-color: #222;
+}
+
+.black-bg {
+    background-color: #000;
+} 
+
+.white-text {
+	color: azure;
+}
+
+.text-muted {
+	font-family: "Courier New";
+	color: navajowhite;
+}
+
+.ailerons {
+	font-family: Ailerons;
+}
+
+.orange {
+	color: #ff4425 !important;
+}
+
+.dark {
+	color: #222;
+}
+
+#credits a:hover {
+	text-decoration: none;
+	color: darksalmon;
+}
+
+#credits a {
+	color: palegreen;
+}
+
+.noUnderline a:visited {
+	text-decoration: none;
+}
+
+.noUnderline a:hover {
+	text-decoration: none;
+}
+
+#copyright {
+	text-align: right;
 }
