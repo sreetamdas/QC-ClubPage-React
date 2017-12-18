@@ -3,6 +3,7 @@ import Members from "./Members";
 import base from "./base";
 import Loader from "./Loader";
 import Header from "./Header";
+import Footer from "./Footer";
 
 class Home extends React.Component {
 	constructor() {
@@ -71,6 +72,7 @@ class Home extends React.Component {
 				) : (
 					<Loader message="Loading" />
 				)}
+				{this.state.loaded ? <Footer /> : null}
 			</div>
 		);
 	}
