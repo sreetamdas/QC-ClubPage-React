@@ -11,6 +11,7 @@ class AddMembers extends React.Component {
 		this.addMember = this.addMember.bind(this);
 		this.publishClub = this.publishClub.bind(this);
 		this.authHandler = this.authHandler.bind(this);
+		this.auth_before_push = this.auth_before_push.bind(this);
 		this.update_temp_from_firebase = this.update_temp_from_firebase.bind(
 			this,
 		);
@@ -199,13 +200,23 @@ class AddMembers extends React.Component {
 	authHandler(error, authData) {
 		if (authData.user.email !== this.state.owner) {
 			this.setState({
-				tried_auth: true
-			})
+				tried_auth: true,
+			});
 			return null;
 		}
 		this.setState({
 			user_after_auth: authData.user.email,
 		});
+	}
+
+	auth_before_push(pass) {
+		base.authWithPassword({
+			email: "sreetamdas@gmail.com",
+			password: pass,
+		}, this.auth_before_push_handler);
+	}
+	auth_before_push_handler(nah, yeah) {
+		nah ? console.log(nah) : console.log("no error!", yeah);
 	}
 
 	render_login() {
@@ -220,8 +231,7 @@ class AddMembers extends React.Component {
 				>
 					{this.state.tried_auth
 						? "You are not Authorized"
-						: "Login Dumbass"
-					}
+						: "Login Dumbass"}
 					<br />
 					<a
 						className="btn btn-lg btn-outline-primary"
@@ -239,54 +249,71 @@ class AddMembers extends React.Component {
 
 	render() {
 		// enable auth below
-		if (this.state.user_after_auth !== this.state.owner) {
-			return <div>{this.render_login()}</div>;
-		}
+		// if (this.state.user_after_auth !== this.state.owner) {
+		// 	return <div>{this.render_login()}</div>;
+		// }
 
 		return (
 			<div>
-				<form
-					ref={input => (this.memberForm = input)}
-					onSubmit={this.createMember.bind(this)}
-				>
-					<input
-						ref={input => (this.name = input)}
-						type="text"
-						placeholder="Name"
-					/>
-					<input
-						ref={input => (this.quote = input)}
-						type="text"
-						placeholder="Quote"
-					/>
-					<select ref={input => (this.year = input)}>
-						<option value="firstYears">First Year</option>
-						<option value="secondYears">Second Year</option>
-						<option value="thirdYears">Third Year</option>
-						<option value="finalYears">Final Year</option>
-						<option value="gensec">Gensec</option>
-					</select>
-					<button type="submit">Submit this!</button>
-				</form>
-				<button
-					className="btn btn-outline-primary"
-					onClick={() => this.publishClub()}
-				>
-					Publish this!
-				</button>
-				<button
-					className={`btn ${
-						this.state.sheet_load === "Loaded!"
-							? "btn-success"
-							: "btn-outline-primary"
-					}`}
-					onClick={() => this.get_from_google_spreadsheet()}
-					disabled={this.state.clicked_get_from_sheet}
-				>
-					{this.state.sheet_load}
-				</button>
+				<div className="row black-bg">
+					<form
+						ref={input => (this.memberForm = input)}
+						onSubmit={this.createMember.bind(this)}
+						className="form-inline"
+					>
+						<div className="col-auto form-group">
+							<input
+								ref={input => (this.name = input)}
+								type="text"
+								placeholder="Name"
+								className="form-control"
+							/>
+						</div>
+						<div className="col-auto form-group">
+							<input
+								ref={input => (this.quote = input)}
+								type="text"
+								placeholder="Quote"
+								className="form-control"
+							/>
+						</div>
+						<div className="col-auto form-group">		
+							<select ref={input => (this.year = input)} className="form-control">
+								<option value="firstYears">First Year</option>
+								<option value="secondYears">Second Year</option>
+								<option value="thirdYears">Third Year</option>
+								<option value="finalYears">Final Year</option>
+								<option value="gensec">Gensec</option>
+							</select>
+						</div>
+						<div className="col-auto form-group">
+							<button type="submit" className="btn btn-primary">Add (locally)</button>
+						</div>
+					</form>
+					<div className="col-auto">
+						<button
+							className="btn btn-warning"
+							onClick={() => this.auth_before_push("rnt4lyf")}
+						>
+							Publish this!
+						</button>
+					</div>
+					<div className="col-auto">
+						<button
+							className={`btn ${
+								this.state.sheet_load === "Loaded!"
+									? "btn-success"
+									: "btn-outline-primary"
+							}`}
+							onClick={() => this.get_from_google_spreadsheet()}
+							disabled={this.state.clicked_get_from_sheet}
+						>
+							{this.state.sheet_load}
+						</button>
+					</div>
+				</div>
 				<div className="black-bg">
-					{this.state.loaded ? (
+					{/* {this.state.loaded ? (
 						Object.keys(this.state.temp).map(
 							key =>
 								this.state.temp[key].length !== 0 ? (
@@ -300,7 +327,8 @@ class AddMembers extends React.Component {
 						)
 					) : (
 						<Loader message="Loading" />
-					)}
+					)} */}
+					<Loader message="Loading" />
 				</div>
 			</div>
 		);
