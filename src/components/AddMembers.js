@@ -113,7 +113,7 @@ class AddMembers extends React.Component {
 
 		const api_key = "AIzaSyB5FLnTEzfV-YrVPf7eUNFkQu9h9VJmGK4",
 			sheet_id = "1YXziLAuUY4-PBBsTyXqHnl_ja3zB4OQbAybByvAxj_4",
-			range = "A2:F42",
+			range = "A2:F420",
 			url = `https://sheets.googleapis.com/v4/spreadsheets/${sheet_id}/values/Sheet1!${range}`;
 
 		const final = `${url}?key=${api_key}`;
