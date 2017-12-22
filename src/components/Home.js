@@ -58,7 +58,7 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div className="black-bg">
-				{this.state.loaded ? <Header /> : null}
+				{/* {this.state.loaded ? <Header /> : null}
 				{this.state.loaded ? (
 					Object.keys(this.sortMembers()).map(
 						key =>
@@ -72,7 +72,8 @@ class Home extends React.Component {
 				) : (
 					<Loader message="Loading" />
 				)}
-				{this.state.loaded ? <Footer /> : null}
+				{this.state.loaded ? <Footer /> : null} */}
+				<Footer />
 			</div>
 		);
 	}
