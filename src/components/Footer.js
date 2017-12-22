@@ -13,6 +13,7 @@ import hackerman_img from "../css/images/Hackerman.png";
 
 const Footer = () => (
 	<section>
+		<img src={process.env.PUBLIC_URL + "/images/SreetamDas.jpg"} />
 		<div className="row josefinSlab fa-icons">
 			<div
 				className="col-lg-12 text-center"
