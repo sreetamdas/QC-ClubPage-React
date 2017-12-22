@@ -78,10 +78,13 @@ class AddMembers extends React.Component {
 	addMember(member) {
 		let temp = { ...this.state.temp };
 		Array.isArray(member)
-			? Object.keys(member).map(key =>
-					temp[`${member[key].year}`].push(member[key]),
-				)
+			? Object.keys(member).map(key => {
+					typeof member[key].year !== "undefined"
+						? temp[`${member[key].year}`].push(member[key])
+						: console.log("not pushing", key, member[key]);
+				})
 			: temp[`${member.year}`].push(member);
+		console.log("about to set state");
 		this.setState({
 			temp: temp,
 		});
@@ -111,7 +114,7 @@ class AddMembers extends React.Component {
 
 		const api_key = "AIzaSyB5FLnTEzfV-YrVPf7eUNFkQu9h9VJmGK4",
 			sheet_id = "1YXziLAuUY4-PBBsTyXqHnl_ja3zB4OQbAybByvAxj_4",
-			range = "A2:F6",
+			range = "A2:F42",
 			url = `https://sheets.googleapis.com/v4/spreadsheets/${sheet_id}/values/Sheet1!${range}`;
 
 		const final = `${url}?key=${api_key}`;
@@ -136,7 +139,7 @@ class AddMembers extends React.Component {
 				this.setState({
 					clicked_get_from_sheet: true,
 				});
-				alert(error);
+				alert(error, "asdasdasdasd");
 			});
 		// transform the received incomplete and/or broken JSON into object and push into firebase
 	}
@@ -189,8 +192,10 @@ class AddMembers extends React.Component {
 						break;
 				}
 			});
+			console.log("new member");
 			new_members.push(new_member);
 		});
+		console.log("reached end of new members");
 		this.addMember(new_members);
 	}
 
@@ -210,10 +215,13 @@ class AddMembers extends React.Component {
 	}
 
 	auth_before_push(pass) {
-		base.authWithPassword({
-			email: "sreetamdas@gmail.com",
-			password: pass,
-		}, this.auth_before_push_handler);
+		base.authWithPassword(
+			{
+				email: "sreetamdas@gmail.com",
+				password: pass,
+			},
+			this.auth_before_push_handler,
+		);
 	}
 	auth_before_push_handler(nah, yeah) {
 		nah ? console.log(nah) : console.log("no error!", yeah);
@@ -277,8 +285,11 @@ class AddMembers extends React.Component {
 								className="form-control"
 							/>
 						</div>
-						<div className="col-auto form-group">		
-							<select ref={input => (this.year = input)} className="form-control">
+						<div className="col-auto form-group">
+							<select
+								ref={input => (this.year = input)}
+								className="form-control"
+							>
 								<option value="firstYears">First Year</option>
 								<option value="secondYears">Second Year</option>
 								<option value="thirdYears">Third Year</option>
@@ -287,7 +298,9 @@ class AddMembers extends React.Component {
 							</select>
 						</div>
 						<div className="col-auto form-group">
-							<button type="submit" className="btn btn-primary">Add (locally)</button>
+							<button type="submit" className="btn btn-primary">
+								Add (locally)
+							</button>
 						</div>
 					</form>
 					<div className="col-auto">
@@ -313,7 +326,7 @@ class AddMembers extends React.Component {
 					</div>
 				</div>
 				<div className="black-bg">
-					{/* {this.state.loaded ? (
+					{this.state.loaded ? (
 						Object.keys(this.state.temp).map(
 							key =>
 								this.state.temp[key].length !== 0 ? (
@@ -327,8 +340,7 @@ class AddMembers extends React.Component {
 						)
 					) : (
 						<Loader message="Loading" />
-					)} */}
-					<Loader message="Loading" />
+					)}
 				</div>
 			</div>
 		);
