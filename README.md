@@ -13,4 +13,6 @@ This is the [Quiz Club](https://qcnitw.in)'s [Team Page](https://qcnitw.in/TheCl
 You can find the dependencies in the [`package.json`](https://github.com/sreetamdas/QC-ClubPage-React/blob/master/package.json) or [here](https://github.com/sreetamdas/QC-ClubPage-React/network/dependencies)
 
 ## License
+[MIT](https://github.com/sreetamdas/QC-ClubPage-React/blob/master/LICENSE)
+
 Feel free to do whatever you may please :)
