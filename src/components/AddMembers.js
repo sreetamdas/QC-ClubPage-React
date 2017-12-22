@@ -10,8 +10,7 @@ class AddMembers extends React.Component {
 
 		this.addMember = this.addMember.bind(this);
 		this.publishClub = this.publishClub.bind(this);
-		this.authHandler = this.authHandler.bind(this);
-		this.auth_before_push = this.auth_before_push.bind(this);
+		this.authenticate = this.authenticate.bind(this);
 		this.update_temp_from_firebase = this.update_temp_from_firebase.bind(
 			this,
 		);
@@ -81,7 +80,7 @@ class AddMembers extends React.Component {
 			? Object.keys(member).map(key => {
 					typeof member[key].year !== "undefined"
 						? temp[`${member[key].year}`].push(member[key])
-						: console.log("not pushing", key, member[key]);
+						: console.log("not pushing", key);
 				})
 			: temp[`${member.year}`].push(member);
 		this.setState({
@@ -197,20 +196,14 @@ class AddMembers extends React.Component {
 	}
 
 	authenticate() {
-		base.authWithOAuthPopup("google", this.authHandler);
-	}
-	authHandler(error, authData) {
-		if (authData.user.email !== this.state.owner) {
-			this.setState({
-				tried_auth: true,
-			});
-			return null;
-		}
-		this.setState({
-			user_after_auth: authData.user.email,
+		base.authWithOAuthPopup("google", (error, authData) => {
+			if (authData.user.email !== this.state.owner) {
+				this.setState({ tried_auth: true });
+				return null;
+			}
+			this.setState({ user_after_auth: authData.user.email });
 		});
 	}
-
 	auth_before_push(event) {
 		event.preventDefault();
 
@@ -221,57 +214,12 @@ class AddMembers extends React.Component {
 			},
 			(nah, yeah) => {
 				nah
-					? console.log("error:", nah)
-					: (console.log("no errors!", yeah), this.publishClub());
+					? console.log("error")
+					: (console.log("no errors!"), this.publishClub());
 			},
 		);
 		this.authForm.reset();
 	}
-	// auth_before_push_handler(nah, yeah) {
-	// 	nah ? console.log(nah) : console.log("no error!", yeah);
-	// }
-	// submit_auth_for_push(e) {
-	// 	e.preventDefault();
-
-	// 	const pass = this.pass.value;
-	// 	this.auth_before_push(pass);
-	// }
-	// render_auth_before_push() {
-	// 	const styles_login = {
-	// 		fontSize: "15vh",
-	// 	};
-	// 	return (
-	// 		<div className="full-page">
-	// 			<h1
-	// 				className="white-text vertical-center josefinSlab"
-	// 				style={styles_login}
-	// 			>
-	// 				{/* {this.state.auth_for_push
-	// 					? "Incorrect Password"
-	// 					: "One Final Auth"} */}
-	// 				Auth
-	// 			</h1>
-	// 			<form
-	// 				onSubmit={this.auth_before_push.bind(this)}
-	// 				// ref={input => (this.authForm = input)}
-	// 			>
-	// 				<div className="col-auto form-group">
-	// 					<input
-	// 						ref={input => (this.pass = input)}
-	// 						type="password"
-	// 						placeholder="Authentication Code/Password"
-	// 						className="form-control"
-	// 					/>
-	// 				</div>
-	// 				<div className="col-auto form-group">
-	// 					<button type="submit" className="btn btn-primary">
-	// 						Submit!
-	// 					</button>
-	// 				</div>
-	// 			</form>
-	// 		</div>
-	// 	);
-	// }
 
 	render_login() {
 		const styles_login = {
@@ -303,9 +251,9 @@ class AddMembers extends React.Component {
 
 	render() {
 		// enable auth below
-		// if (this.state.user_after_auth !== this.state.owner) {
-		// 	return <div>{this.render_login()}</div>;
-		// }
+		if (this.state.user_after_auth !== this.state.owner) {
+			return <div>{this.render_login()}</div>;
+		}
 
 		return (
 			<div>
