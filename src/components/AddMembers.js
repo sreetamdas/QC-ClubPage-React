@@ -84,7 +84,6 @@ class AddMembers extends React.Component {
 						: console.log("not pushing", key, member[key]);
 				})
 			: temp[`${member.year}`].push(member);
-		console.log("about to set state");
 		this.setState({
 			temp: temp,
 		});
@@ -192,10 +191,8 @@ class AddMembers extends React.Component {
 						break;
 				}
 			});
-			console.log("new member");
 			new_members.push(new_member);
 		});
-		console.log("reached end of new members");
 		this.addMember(new_members);
 	}
 
