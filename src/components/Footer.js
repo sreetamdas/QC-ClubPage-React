@@ -8,6 +8,8 @@ import {
 	faEnvelope,
 	faRss,
 } from "@fortawesome/fontawesome-free-solid";
+import coffee_img from "../css/images/coffee.jpg";
+import hackerman_img from "../css/images/Hackerman.png";
 
 const Footer = () => (
 	<section>
@@ -62,7 +64,7 @@ const Footer = () => (
 				style={{ borderRight: "3px solid", height: "40px" }}
 				className="col-12"
 			>
-				<p style={{ fontSize: "28px" }} id="copyright">
+				<p style={{ fontSize: "38px" }} id="copyright">
 					<a
 						rel="license"
 						href="http://creativecommons.org/licenses/by-nc/4.0/"
@@ -76,18 +78,28 @@ const Footer = () => (
 					Quiz Club, NIT Warangal
 				</p>
 			</div>
-			<div className="col-12" style={{ paddingTop: "40px" }}>
+			<div className="col-12" style={{ paddingTop: "15vh" }}>
 				<p style={{ fontSize: "28px" }}>
 					Made with{" "}
-					<a href="">
+					<a href={coffee_img} target="_blank">
+						<FontAwesomeIcon icon={faCoffee} />
+					</a>,{" "}
+					<a
+						href="https://giphy.com/gifs/LrmU6jXIjwziE/html5"
+						target="_blank"
+					>
 						<FontAwesomeIcon icon={faHeart} />
-					</a>
-					, <FontAwesomeIcon icon={faCoffee} /> and{" "}
-					<FontAwesomeIcon icon={faCode} /> by{" "}
+					</a>{" "}
+					and{" "}
+					<a href={hackerman_img} target="_blank">
+						<FontAwesomeIcon icon={faCode} />
+					</a>{" "}
+					by{" "}
 					<a
 						id="credits"
 						href="https://bit.do/sreetamdas"
 						style={{ border: "2px solid" }}
+						target="_blank"
 					>
 						Sreetam Das
 					</a>
