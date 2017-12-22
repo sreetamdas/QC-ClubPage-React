@@ -211,18 +211,67 @@ class AddMembers extends React.Component {
 		});
 	}
 
-	auth_before_push(pass) {
+	auth_before_push(event) {
+		event.preventDefault();
+
 		base.authWithPassword(
 			{
 				email: "sreetamdas@gmail.com",
-				password: pass,
+				password: this.pass.value,
 			},
-			this.auth_before_push_handler,
+			(nah, yeah) => {
+				nah
+					? console.log("error:", nah)
+					: (console.log("no errors!", yeah), this.publishClub());
+			},
 		);
+		this.authForm.reset();
 	}
-	auth_before_push_handler(nah, yeah) {
-		nah ? console.log(nah) : console.log("no error!", yeah);
-	}
+	// auth_before_push_handler(nah, yeah) {
+	// 	nah ? console.log(nah) : console.log("no error!", yeah);
+	// }
+	// submit_auth_for_push(e) {
+	// 	e.preventDefault();
+
+	// 	const pass = this.pass.value;
+	// 	this.auth_before_push(pass);
+	// }
+	// render_auth_before_push() {
+	// 	const styles_login = {
+	// 		fontSize: "15vh",
+	// 	};
+	// 	return (
+	// 		<div className="full-page">
+	// 			<h1
+	// 				className="white-text vertical-center josefinSlab"
+	// 				style={styles_login}
+	// 			>
+	// 				{/* {this.state.auth_for_push
+	// 					? "Incorrect Password"
+	// 					: "One Final Auth"} */}
+	// 				Auth
+	// 			</h1>
+	// 			<form
+	// 				onSubmit={this.auth_before_push.bind(this)}
+	// 				// ref={input => (this.authForm = input)}
+	// 			>
+	// 				<div className="col-auto form-group">
+	// 					<input
+	// 						ref={input => (this.pass = input)}
+	// 						type="password"
+	// 						placeholder="Authentication Code/Password"
+	// 						className="form-control"
+	// 					/>
+	// 				</div>
+	// 				<div className="col-auto form-group">
+	// 					<button type="submit" className="btn btn-primary">
+	// 						Submit!
+	// 					</button>
+	// 				</div>
+	// 			</form>
+	// 		</div>
+	// 	);
+	// }
 
 	render_login() {
 		const styles_login = {
@@ -260,7 +309,7 @@ class AddMembers extends React.Component {
 
 		return (
 			<div>
-				<div className="row black-bg">
+				<div className="row black-bg text-center">
 					<form
 						ref={input => (this.memberForm = input)}
 						onSubmit={this.createMember.bind(this)}
@@ -300,15 +349,7 @@ class AddMembers extends React.Component {
 							</button>
 						</div>
 					</form>
-					<div className="col-auto">
-						<button
-							className="btn btn-warning"
-							onClick={() => this.auth_before_push("rnt4lyf")}
-						>
-							Publish this!
-						</button>
-					</div>
-					<div className="col-auto">
+					<div className="col-auto offset-1">
 						<button
 							className={`btn ${
 								this.state.sheet_load === "Loaded!"
@@ -321,6 +362,30 @@ class AddMembers extends React.Component {
 							{this.state.sheet_load}
 						</button>
 					</div>
+				</div>
+				<div
+					className="row black-bg text-center"
+					style={{ paddingTop: "5vh", paddingBottom: "5vh" }}
+				>
+					<form
+						ref={input => (this.authForm = input)}
+						onSubmit={this.auth_before_push.bind(this)}
+						className="form-inline offset-8"
+					>
+						<div className="col-auto form-group">
+							<input
+								ref={input => (this.pass = input)}
+								type="password"
+								placeholder="Auth Code"
+								className="form-control"
+							/>
+						</div>
+						<div className="col-auto form-group">
+							<button type="submit" className="btn btn-warning">
+								Publish this!
+							</button>
+						</div>
+					</form>
 				</div>
 				<div className="black-bg">
 					{this.state.loaded ? (
