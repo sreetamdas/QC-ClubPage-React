@@ -11,8 +11,7 @@ class Members extends React.Component {
 				paddingTop: 0,
 			},
 			quoteClasses = "josefinSlab orange";
-		console.log("original:", member.image);
-		// console.log(process.env.PUBLIC_URL);
+
 		let local_image = false,
 			image_id =
 				typeof member.image === "undefined"
@@ -22,7 +21,6 @@ class Members extends React.Component {
 						: `https://drive.google.com/uc?export=view&id=${new URL(
 								member.image,
 							).searchParams.get("id")}`;
-		console.log("imageid:", image_id);
 		return (
 			<div className="col text-center" key={key}>
 				<img
