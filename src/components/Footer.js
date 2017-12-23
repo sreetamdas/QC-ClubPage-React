@@ -87,6 +87,7 @@ const Footer = () => (
 					<a
 						href="https://giphy.com/gifs/LrmU6jXIjwziE/html5"
 						target="_blank"
+						rel="noopener noreferrer"
 					>
 						<FontAwesomeIcon icon={faHeart} />
 					</a>{" "}
@@ -100,6 +101,7 @@ const Footer = () => (
 						href="https://bit.do/sreetamdas"
 						style={{ border: "2px solid" }}
 						target="_blank"
+						rel="noopener noreferrer"
 					>
 						Sreetam Das
 					</a>
