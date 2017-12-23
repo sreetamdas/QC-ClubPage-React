@@ -2,29 +2,47 @@ import React from "react";
 
 class Members extends React.Component {
 	render_member(member, key) {
-		const nameStyle = {
-				fontSize: "3em",
-			},
-			nameClasses = "josefinSlab noUnderline white-text",
-			quoteStyle = {
-				fontSize: "1.7em",
-				paddingTop: 0,
-			},
-			quoteClasses = "josefinSlab orange";
-
 		let local_image = false,
+			font_size_name =
+				typeof member.name === "undefined"
+					? "25px"
+					: member.name.length >= "15" ? "38px" : "40px",
+			font_size_quote =
+				typeof member.quote === "undefined"
+					? "20px"
+					: member.quote.length >= "50"
+						? "18px"
+						: member.quote.length >= "40"
+							? "22px"
+							: member.quote.length >= "25"
+								? "25px"
+								: member.quote.length >= "15" ? "28px" : "32px",
 			image_id =
 				typeof member.image === "undefined"
 					? "https://drive.google.com/open?id=1QwSSN4kXEERbydtgpomfuqw9-RSw4PfH" // Kasala is default image obviously
 					: member.image.substring(0, 5) === "/img/"
-						? local_image = true
+						? (local_image = true)
 						: `https://drive.google.com/uc?export=view&id=${new URL(
 								member.image,
 							).searchParams.get("id")}`;
+
+		const nameStyle = {
+				fontSize: font_size_name,
+			},
+			nameClasses = "josefinSlab noUnderline white-text",
+			quoteStyle = {
+				fontSize: font_size_quote,
+				paddingTop: 0,
+			},
+			quoteClasses = "josefinSlab orange";
 		return (
-			<div className="col text-center" key={key}>
+			<div className="col-lg-3 col-md-12 col-sm-12 text-center" key={key}>
 				<img
-					src={local_image ? process.env.PUBLIC_URL + member.image : image_id}
+					src={
+						local_image
+							? process.env.PUBLIC_URL + member.image
+							: image_id
+					}
 					height="200px"
 					className="rounded-circle"
 					alt={member.name}
@@ -50,11 +68,18 @@ class Members extends React.Component {
 			<div>
 				{!empty ? (
 					<div className="container-fluid">
-						<div className="row">
+						<div
+							className="row justify-content-center"
+							style={{ padding: "0 50px" }}
+						>
 							{Object.keys(member_list).map(key =>
 								this.render_member(member_list[key], key),
 							)}
 						</div>
+						<hr
+							className="primary"
+							style={{ paddingBottom: "50px" }}
+						/>
 					</div>
 				) : (
 					<h3>Nothing yet</h3>
