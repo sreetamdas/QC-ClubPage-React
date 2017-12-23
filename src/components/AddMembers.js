@@ -77,11 +77,12 @@ class AddMembers extends React.Component {
 	addMember(member) {
 		let temp = { ...this.state.temp };
 		Array.isArray(member)
-			? Object.keys(member).map(key => {
-					typeof member[key].year !== "undefined"
-						? temp[`${member[key].year}`].push(member[key])
-						: console.log("not pushing", key);
-				})
+			? Object.keys(member).map(
+					key =>
+						typeof member[key].year !== "undefined"
+							? temp[`${member[key].year}`].push(member[key])
+							: console.log("not pushing", key),
+				)
 			: temp[`${member.year}`].push(member);
 		this.setState({
 			temp: temp,
@@ -212,11 +213,10 @@ class AddMembers extends React.Component {
 				email: "sreetamdas@gmail.com",
 				password: this.pass.value,
 			},
-			(nah, yeah) => {
+			(nah, yeah) =>
 				nah
 					? console.log("error")
-					: (console.log("no errors!"), this.publishClub());
-			},
+					: (console.log("no errors!"), this.publishClub()),
 		);
 		this.authForm.reset();
 	}
