@@ -6,17 +6,11 @@ class Members extends React.Component {
 			font_size_name =
 				typeof member.name === "undefined"
 					? "25px"
-					: member.name.length >= "15" ? "38px" : "40px",
+					: member.name.length >= "15" ? "34px" : "36px",
 			font_size_quote =
 				typeof member.quote === "undefined"
 					? "20px"
-					: member.quote.length >= "50"
-						? "18px"
-						: member.quote.length >= "40"
-							? "22px"
-							: member.quote.length >= "25"
-								? "25px"
-								: member.quote.length >= "15" ? "28px" : "32px",
+					: member.quote.length >= "50" ? "18px" : "22px",
 			image_id =
 				typeof member.image === "undefined"
 					? "https://drive.google.com/open?id=1QwSSN4kXEERbydtgpomfuqw9-RSw4PfH" // Kasala is default image obviously
@@ -34,7 +28,7 @@ class Members extends React.Component {
 				fontSize: font_size_quote,
 				paddingTop: 0,
 			},
-			quoteClasses = "josefinSlab orange";
+			quoteClasses = "Roboto orange";
 		return (
 			<div className="col-lg-3 col-md-12 col-sm-12 text-center" key={key}>
 				<img
