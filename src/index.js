@@ -7,6 +7,7 @@ import "./css/bootstrap.min.css";
 import "./css/styles.css";
 import AddMembers from "./components/AddMembers";
 import NotFound from "./components/NotFound";
+import Oldies from "./components/Oldies";
 
 const Root = () => {
 	return (
@@ -14,6 +15,7 @@ const Root = () => {
 			<Switch>
 				<Route exact path="/" component={Home} />
 				<Route exact path="/add" component={AddMembers} />
+				<Route exact path="/oldies" component={Oldies} />
 				<Route component={NotFound} />
 			</Switch>
 		</BrowserRouter>
