@@ -19,7 +19,7 @@ const Footer = () => (
 				style={{ paddingBottom: "40px" }}
 			>
 				<h2
-					className="section-heading ailerons"
+					className="section-heading josefinSlab"
 					style={{ fontSize: "40px" }}
 				>
 					Let's Get In Touch!
@@ -57,7 +57,7 @@ const Footer = () => (
 			</div>
 		</div>
 		<div
-			className="row ailerons orange text-center"
+			className="row josefinSlab orange text-center"
 			style={{ paddingTop: "100px" }}
 		>
 			<div
@@ -99,7 +99,13 @@ const Footer = () => (
 					<a
 						id="credits"
 						href="https://bit.do/sreetamdas"
-						style={{ border: "2px solid" }}
+						style={{
+							border: "1px solid",
+							paddingTop: "5px",
+							paddingLeft: "3px",
+							paddingRight: "3px",
+							paddingBottom: "0px",
+						}}
 						target="_blank"
 						rel="noopener noreferrer"
 					>
