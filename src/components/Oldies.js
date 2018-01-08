@@ -130,7 +130,7 @@ class Oldies extends React.Component {
 					Get
 				</button>
 				{this.state.loaded ? (
-					<Header heading={"Quiz Club Oldies"} />
+					<Header heading="Quiz Club Oldies" />
 				) : null}
 				{this.state.loaded ? (
 					Object.keys(this.state.exMembers).map(
