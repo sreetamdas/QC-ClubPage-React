@@ -136,7 +136,9 @@ p {
 
 #credits:hover {
 	text-decoration: none;
-	color: darksalmon;
+	color: black;
+	background-color: palegreen;
+	font-weight: 600;
 }
 
 #credits {
