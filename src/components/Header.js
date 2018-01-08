@@ -5,7 +5,7 @@ class Header extends React.Component {
         return (
             <section className="dark-bg">
                 <h1 className="josefinSlab text-center orange" style={{ fontSize: '65px' }}>
-					The Quiz Club Fam
+					{this.props.heading}
 				</h1>
             </section>
         )
