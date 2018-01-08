@@ -5,6 +5,7 @@ import Loader from "./Loader";
 import Header from "./Header";
 import Footer from "./Footer";
 import axios from "axios";
+import { ProgressBar } from "reprogressbars";
 
 class Oldies extends React.Component {
 	constructor() {
@@ -18,6 +19,7 @@ class Oldies extends React.Component {
 				"2017": [],
 			},
 			loaded: false,
+			isLoading: true,
 			devOptions: false,
 		};
 	}
@@ -29,6 +31,7 @@ class Oldies extends React.Component {
 			state: `exMembers`, // add something here?
 			then() {
 				this.setState({
+					isLoading: false,
 					loaded: true,
 				});
 			},
@@ -76,6 +79,7 @@ class Oldies extends React.Component {
 			.then(response => {
 				// call function here
 				this.setState({
+					isLoading: false,
 					loaded: true,
 				});
 				console.log(response);
@@ -129,23 +133,28 @@ class Oldies extends React.Component {
 				>
 					Get
 				</button>
+				<ProgressBar
+					isLoading={this.state.isLoading}
+					// className="fixed-progress-bar"
+					color="#f73d1c"
+					useBoxShadow="true"
+					height="3px"
+				/>
 				{this.state.loaded ? (
-					<Header heading="Quiz Club Oldies" />
-				) : null}
-				{this.state.loaded ? (
-					Object.keys(this.state.exMembers).map(
-						key => (
+					<React.Fragment>
+						<Header heading="Quiz Club Oldies" />
+						{Object.keys(this.state.exMembers).map(key => (
 							<Members
 								key={key}
 								list={this.state.exMembers[key]}
 								heading={`Batch of ${key}`}
 							/>
-						), // Passes an entire batch at a time
-					)
+						))}
+						<Footer />
+					</React.Fragment>
 				) : (
 					<Loader message="Loading" />
 				)}
-				{this.state.loaded ? <Footer /> : null}
 			</div>
 		);
 	}
