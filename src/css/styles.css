@@ -1,186 +1,169 @@
 ::-webkit-scrollbar {
-	display: none;
+    display: none;
 }
 
 body {
-	max-width: 100%;
-	overflow-x: hidden;
-}
-
-@font-face {
-	font-family: Infinity;
-	src: url(fonts/Infinity.ttf);
-}
-
-@font-face {
-	font-family: Ailerons;
-	src: url(fonts/Ailerons.otf);
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Josefin+Slab|Roboto:300i");
 .josefinSlab {
-	font-family: "Josefin Slab", serif;
+    font-family: "Josefin Slab", serif;
 }
 
 .roboto {
-	font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
+
 
 /* .specialElite {
 	font-family: "Special Elite", cursive;
 } */
 
 section {
-	padding: 100px 0;
+    padding: 100px 0;
 }
 
 .dark-bg {
-	color: #fff;
-	background-color: #000;
+    color: #fff;
+    background-color: #000;
 }
 
 .white-bg {
-	color: black;
-	background-color: white;
-}
-
-.infinity {
-	font-family: Infinity;
-	/* font-weight: bold */
+    color: black;
+    background-color: white;
 }
 
 html,
 body {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 hr {
-	max-width: 50px;
-	border-color: #f05f40;
-	border-width: 3px;
+    max-width: 50px;
+    border-color: #f05f40;
+    border-width: 3px;
 }
 
 hr.light {
-	border-color: #fff;
+    border-color: #fff;
 }
 
 a {
-	color: #f73d1c;
-	-webkit-transition: all 0.35s;
-	-moz-transition: all 0.35s;
-	transition: all 0.35s;
+    color: #f73d1c;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
 }
 
 a:visited {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 a:hover,
 a:focus {
-	color: coral;
+    color: coral;
 }
 
 a:visited {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 p {
-	margin-bottom: 20px;
-	font-size: 16px;
-	line-height: 1.5;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .bg-dark {
-	color: #fff;
-	background-color: #000;
+    color: #fff;
+    background-color: #000;
 }
 
 .no-padding {
-	padding: 0;
+    padding: 0;
 }
 
 .navbar-default {
-	border-color: rgba(34, 34, 34, 0.05);
-	font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
-	background-color: #000;
-	-webkit-transition: all 0.35s;
-	-moz-transition: all 0.35s;
-	transition: all 0.35s;
+    border-color: rgba(34, 34, 34, 0.05);
+    font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    background-color: #000;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
 }
 
 .black-bg {
-	background-color: #000;
+    background-color: #000;
 }
 
 .white-text {
-	color: white !important;
+    color: white !important;
 }
 
 .text-muted {
-	font-family: "Courier New";
-	color: navajowhite;
-}
-
-.ailerons {
-	font-family: Ailerons;
+    font-family: "Courier New";
+    color: navajowhite;
 }
 
 .orange {
-	color: #f73d1c !important;
+    color: #f73d1c !important;
 }
 
 .dark {
-	color: #222;
+    color: #222;
 }
 
 #credits:hover {
-	text-decoration: none;
-	color: black;
-	background-color: palegreen;
-	font-weight: 600;
+    text-decoration: none;
+    color: black;
+    background-color: palegreen;
+    font-weight: 600;
 }
 
 #credits {
-	color: palegreen;
+    color: palegreen;
 }
 
 .noUnderline a:visited {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .noUnderline a:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
+
 
 /* #copyright {
     text-align: right;
 } */
 
 .full-page {
-	/* position: relative; */
-	display: table;
-	position: absolute;
-	width: 100%;
-	height: 100vh;
-	text-align: center;
-	background-color: #000;
+    /* position: relative; */
+    display: table;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    background-color: #000;
 }
 
 .vertical-center {
-	display: table-cell;
-	vertical-align: middle;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .fa-icons {
-	color: white;
+    color: white;
 }
 
 .fa-icons div {
-	color: #f73d1c;
+    color: #f73d1c;
 }
 
 .fa-icons div p,
 h2 {
-	color: white;
+    color: white;
 }
