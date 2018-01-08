@@ -59,6 +59,20 @@ class Members extends React.Component {
 			<div>
 				{!empty ? (
 					<div className="container-fluid">
+						{this.props.heading ? (
+							<React.Fragment>
+								<h1
+									className="josefinSlab white-text row justify-content-center"
+									style={{ fontSize: "50px" }}
+								>
+									{this.props.heading}
+								</h1>
+								<hr
+									className="primary orange"
+									style={{ paddingBottom: "25px" }}
+								/>
+							</React.Fragment>
+						) : null}
 						<div
 							className="row justify-content-center"
 							style={{ padding: "0 50px" }}
@@ -67,10 +81,12 @@ class Members extends React.Component {
 								this.render_member(member_list[key], key),
 							)}
 						</div>
-						<hr
-							className="primary"
-							style={{ paddingBottom: "50px" }}
-						/>
+						{!this.props.heading ? (
+							<hr
+								className="primary orange"
+								style={{ paddingBottom: "50px" }}
+							/>
+						) : <div style={{ padding: "50px 0px" }}></div>}
 					</div>
 				) : (
 					<h3>Nothing yet</h3>
