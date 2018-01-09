@@ -4,6 +4,7 @@ import base from "./base";
 import Loader from "./Loader";
 import Header from "./Header";
 import Footer from "./Footer";
+import QCNavbar from "./QCNavbar";
 import { ProgressBar } from "reprogressbars";
 
 class Home extends React.Component {
@@ -68,6 +69,7 @@ class Home extends React.Component {
 					useBoxShadow="true"
 					height="3px"
 				/>
+				<QCNavbar />
 				{this.state.loaded ? (
 					<React.Fragment>
 						<Header heading="The Quiz Club Fam" />
