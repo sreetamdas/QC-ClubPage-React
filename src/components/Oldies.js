@@ -4,6 +4,7 @@ import base from "./base";
 import Loader from "./Loader";
 import Header from "./Header";
 import Footer from "./Footer";
+import QCNavbar from "./QCNavbar";
 import axios from "axios";
 import { ProgressBar } from "reprogressbars";
 
@@ -20,7 +21,7 @@ class Oldies extends React.Component {
 			},
 			loaded: false,
 			isLoading: true,
-			devOptions: false,
+			dev: false,
 		};
 	}
 
@@ -129,7 +130,7 @@ class Oldies extends React.Component {
 				<button
 					className="btn btn-outline-primary"
 					onClick={() => this.get_from_google_spreadsheet()}
-					style={!this.state.devOptions ? { display: "none" } : {}}
+					style={!this.state.dev ? { display: "none" } : {}}
 				>
 					Get
 				</button>
@@ -140,6 +141,7 @@ class Oldies extends React.Component {
 					useBoxShadow="true"
 					height="3px"
 				/>
+				<QCNavbar />
 				{this.state.loaded ? (
 					<React.Fragment>
 						<Header heading="Quiz Club Oldies" />
