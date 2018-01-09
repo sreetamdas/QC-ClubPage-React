@@ -4,6 +4,7 @@ import base from "./base";
 import Loader from "./Loader";
 import Header from "./Header";
 import Footer from "./Footer";
+import { ProgressBar } from "reprogressbars";
 
 class Home extends React.Component {
 	constructor() {
@@ -14,6 +15,7 @@ class Home extends React.Component {
 		this.state = {
 			clubMembers: {},
 			loaded: false,
+			isLoading: true,
 		};
 	}
 
@@ -24,6 +26,7 @@ class Home extends React.Component {
 			state: `clubMembers`, // add something here?
 			then() {
 				this.setState({
+					isLoading: false,
 					loaded: true,
 				});
 			},
@@ -58,6 +61,13 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div className="black-bg">
+				<ProgressBar
+					isLoading={this.state.isLoading}
+					// className="fixed-progress-bar"
+					color="#f73d1c"
+					useBoxShadow="true"
+					height="3px"
+				/>
 				{this.state.loaded ? (
 					<React.Fragment>
 						<Header heading="The Quiz Club Fam" />
