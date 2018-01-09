@@ -59,22 +59,22 @@ class Home extends React.Component {
 		return (
 			<div className="black-bg">
 				{this.state.loaded ? (
-					<Header heading="The Quiz Club Fam" />
-				) : null}
-				{this.state.loaded ? (
-					Object.keys(this.sortMembers()).map(
-						key =>
-							this.state.clubMembers[key].length !== 0 ? (
-								<Members
-									key={key}
-									list={this.state.clubMembers[key]}
-								/> // Passes an entire batch at a time
-							) : null,
-					)
+					<React.Fragment>
+						<Header heading="The Quiz Club Fam" />
+						{Object.keys(this.sortMembers()).map(
+							key =>
+								this.state.clubMembers[key].length !== 0 ? (
+									<Members
+										key={key}
+										list={this.state.clubMembers[key]}
+									/> // Passes an entire batch at a time
+								) : null,
+						)}
+						<Footer />
+					</React.Fragment>
 				) : (
 					<Loader message="Loading" />
 				)}
-				{this.state.loaded ? <Footer /> : null}
 			</div>
 		);
 	}
