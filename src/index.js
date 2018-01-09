@@ -8,6 +8,7 @@ import "./css/styles.css";
 import AddMembers from "./components/AddMembers";
 import NotFound from "./components/NotFound";
 import Oldies from "./components/Oldies";
+import Test from "./components/Test";
 
 const Root = () => {
 	return (
@@ -16,6 +17,7 @@ const Root = () => {
 				<Route exact path="/" component={Home} />
 				<Route exact path="/add" component={AddMembers} />
 				<Route exact path="/oldies" component={Oldies} />
+				<Route exact path="/test" component={Test} />
 				<Route component={NotFound} />
 			</Switch>
 		</BrowserRouter>
