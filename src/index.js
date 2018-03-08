@@ -12,7 +12,7 @@ import Test from "./components/Test";
 
 const Root = () => {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Switch>
 				<Route exact path="/" component={Home} />
 				<Route exact path="/add" component={AddMembers} />
